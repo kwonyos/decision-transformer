@@ -1,0 +1,35 @@
+{
+    "root": "/home/kwonys/code/decision-transformer",
+    "program": "experiment.py",
+    "git": {
+        "remote": "git@github.com:kwonyos/decision-transformer.git",
+        "commit": "44e569b8183f488f77975a785a0c11f1df4dddf9"
+    },
+    "email": null,
+    "startedAt": "2021-11-24T07:41:59.545149",
+    "host": "strings.engin.umich.edu",
+    "username": "kwonys",
+    "executable": "/home/kwonys/anaconda3/envs/decision-transformer-gym/bin/python",
+    "os": "Linux-5.11.0-40-generic-x86_64-with-glibc2.10",
+    "python": "3.8.5",
+    "gpu": "NVIDIA TITAN Xp COLLECTORS EDITION",
+    "gpu_count": 2,
+    "cpu_count": 36,
+    "args": [
+        "--env",
+        "trajreacher2d",
+        "--dataset",
+        "expert",
+        "--model_type",
+        "dt",
+        "-w",
+        "True"
+    ],
+    "state": "finished",
+    "jobType": null,
+    "mode": "run",
+    "name": "gym-experiment-trajreacher2d-expert-138677",
+    "project": "decision-transformer",
+    "heartbeatAt": "2021-11-24T08:22:09.880687",
+    "exitcode": 0
+}
