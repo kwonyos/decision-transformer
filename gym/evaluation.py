@@ -86,7 +86,7 @@ def evaluate_episode_rtg_render(
 
 if __name__ == '__main__':
     mode = 'normal'
-    num_eval_episodes = 100
+    num_eval_episodes = 2000
     device = 'cuda'
 
 
@@ -133,7 +133,7 @@ if __name__ == '__main__':
     #evaluate_episode_rtg_render
     return_history, length_history = [], [] 
 
-    env_targets = [76, 70, 60, 50, 40, 30, 20]
+    env_targets = [90 ,80, 70, 60, 50, 40, 30, 20]
     for target_rew in env_targets:
         for _ in range(num_eval_episodes):
             with torch.no_grad():
