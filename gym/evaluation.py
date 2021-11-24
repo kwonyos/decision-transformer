@@ -115,9 +115,9 @@ if __name__ == '__main__':
         returns.append(path['rewards'].sum())
     traj_lens, returns = np.array(traj_lens), np.array(returns)
 
-    print('='*10)
-    print('mean return with vanilla is ',np.mean(returns))
-    print('mean length with vanilla is ',np.mean(traj_lens))
+    print('='*30)
+    print('mean return with vanilla RL is ',np.mean(returns))
+    print('mean length with vanilla RL is ',np.mean(traj_lens))
 
     # used for input normalization
     states = np.concatenate(states, axis=0)
@@ -133,7 +133,7 @@ if __name__ == '__main__':
     #evaluate_episode_rtg_render
     return_history, length_history = [], [] 
 
-    env_targets = [90 ,80, 70, 60, 50, 40, 30, 20]
+    env_targets = [-15 ,-20, -25, -30, -35, -40, -45]
     for target_rew in env_targets:
         for _ in range(num_eval_episodes):
             with torch.no_grad():
@@ -153,8 +153,8 @@ if __name__ == '__main__':
                 return_history.append(ret)
                 length_history.append(length)
         
-        print('='*10)
-        print('mean return with target reward ', target_rew/scale,', is ',np.mean(return_history))
-        print('mean length with target reward ', target_rew/scale,', is ',np.mean(length_history))
-        print('='*10)
+        print('='*30)
+        print('mean return with target return ', target_rew/scale,', is ',np.mean(return_history))
+        print('mean length with target return ', target_rew/scale,', is ',np.mean(length_history))
+        print('='*30)
         
