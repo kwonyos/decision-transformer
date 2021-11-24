@@ -287,7 +287,7 @@ def experiment(
 
     if True:
         file_name = open('dt-agent.pkl','wb')
-        pickle.dump(model)
+        pickle.dump(model,file_name, protocol=pickle.HIGHEST_PROTOCOL)
 
 
 
