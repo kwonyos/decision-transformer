@@ -285,6 +285,11 @@ def experiment(
         if log_to_wandb:
             wandb.log(outputs)
 
+    if True:
+        file_name = open('dt-agent.pkl','wb')
+        pickle.dump(model)
+
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
