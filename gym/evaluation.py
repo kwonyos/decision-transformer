@@ -122,8 +122,9 @@ if __name__ == '__main__':
 
 
      # CHANGE: load model, need to check
-    model = torch.load('dt-agent.pkl')
-    # model = model.model
+    #model = torch.load('dt-agent.pkl')
+    file = open('dt-agent.pkl','rb')
+    model = pickle.load(file)
 
     #evaluate_episode_rtg_render
 
