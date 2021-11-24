@@ -56,6 +56,11 @@ def experiment(
         max_ep_len = 100
         env_targets = [76, 40]
         scale = 10.
+    elif env_name == 'trajreacher2d':
+    	env = gym.make('gym_mujoco:ReacherTraj-v2')
+    	max_ep_len = 150
+    	env_targets = [76, 40]
+    	scale = 10
     else:
         raise NotImplementedError
 
@@ -270,7 +275,8 @@ def experiment(
             name=exp_prefix,
             group=group_name,
             project='decision-transformer',
-            config=variant
+            config=variant,
+            entity='kwonyos'
         )
         # wandb.watch(model)  # wandb has some bug
 
