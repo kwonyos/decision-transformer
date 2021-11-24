@@ -59,8 +59,8 @@ def evaluate_episode_rtg_render(
         action = action.detach().cpu().numpy()
 
         # CHANGE
-        state, reward, done, _ = env.step(action,1)
-        env.render()
+        state, reward, done, _ = env.step(action)
+        # env.render()
 
         cur_state = torch.from_numpy(state).to(device=device).reshape(1, state_dim)
         states = torch.cat([states, cur_state], dim=0)
@@ -92,7 +92,7 @@ if __name__ == '__main__':
 
     env = gym.make('gym_mujoco:ReacherTraj-v2')
     max_ep_len = 150
-    env_targets = 76 # or 40
+    
     scale = 10
 
     state_dim = env.observation_space.shape[0]
@@ -115,6 +115,10 @@ if __name__ == '__main__':
         returns.append(path['rewards'].sum())
     traj_lens, returns = np.array(traj_lens), np.array(returns)
 
+    print('='*10)
+    print('mean return with vanilla is ',np.mean(returns))
+    print('mean length with vanilla is ',np.mean(traj_lens))
+
     # used for input normalization
     states = np.concatenate(states, axis=0)
     state_mean, state_std = np.mean(states, axis=0), np.std(states, axis=0) + 1e-6
@@ -127,19 +131,30 @@ if __name__ == '__main__':
     model = pickle.load(file)
 
     #evaluate_episode_rtg_render
+    return_history, length_history = [], [] 
 
-    for _ in range(num_eval_episodes):
-        with torch.no_grad():
-            ret, length = evaluate_episode_rtg_render(
-                env,
-                state_dim,
-                act_dim,
-                model,
-                max_ep_len=max_ep_len,
-                scale=scale,
-                target_return=env_targets/scale,
-                mode=mode,
-                state_mean=state_mean,
-                state_std=state_std,
-                device=device,
-            )
+    env_targets = [76, 70, 60, 50, 40, 30, 20]
+    for target_rew in env_targets:
+        for _ in range(num_eval_episodes):
+            with torch.no_grad():
+                ret, length = evaluate_episode_rtg_render(
+                    env,
+                    state_dim,
+                    act_dim,
+                    model,
+                    max_ep_len=max_ep_len,
+                    scale=scale,
+                    target_return=target_rew/scale,
+                    mode=mode,
+                    state_mean=state_mean,
+                    state_std=state_std,
+                    device=device,
+                )
+                return_history.append(ret)
+                length_history.append(length)
+        
+        print('='*10)
+        print('mean return with target reward ', target_rew/scale,', is ',np.mean(return_history))
+        print('mean length with target reward ', target_rew/scale,', is ',np.mean(length_history))
+        print('='*10)
+        
