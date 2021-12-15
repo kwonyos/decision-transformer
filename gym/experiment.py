@@ -57,7 +57,7 @@ def experiment(
         env_targets = [76, 40]
         scale = 10.
     elif env_name == 'trajreacher2d':
-    	env = gym.make('gym_mujoco:ReacherTraj-v2')
+    	env = gym.make('gym_traj:ReacherTraj-v1')
     	max_ep_len = 150
     	env_targets = [76, 40]
     	scale = 10
