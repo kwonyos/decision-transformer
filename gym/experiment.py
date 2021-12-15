@@ -59,7 +59,7 @@ def experiment(
     elif env_name == 'trajreacher2d':
     	env = gym.make('gym_mujoco:ReacherTraj-v2')
     	max_ep_len = 150
-    	env_targets = [76, 40]
+    	env_targets = [-15]
     	scale = 10
     else:
         raise NotImplementedError
