@@ -57,10 +57,15 @@ def experiment(
         env_targets = [76, 40]
         scale = 10.
     elif env_name == 'trajreacher2d':
-    	env = gym.make('gym_mujoco:ReacherTraj-v2')
-    	max_ep_len = 150
-    	env_targets = [-15]
-    	scale = 10
+        env = gym.make('gym_traj:ReacherTraj-v1')
+        max_ep_len = 150
+        env_targets = [-15]
+        scale = 10
+    elif env_name == 'fetch':
+        env = gym.make('gym_traj:FetchTrajReachDense-v2')
+        max_ep_len = 1000
+        env_targets = [-50000] # -50
+        scale = 1000.
     else:
         raise NotImplementedError
 
@@ -296,7 +301,7 @@ if __name__ == '__main__':
     parser.add_argument('--env', type=str, default='hopper')
     parser.add_argument('--dataset', type=str, default='medium')  # medium, medium-replay, medium-expert, expert
     parser.add_argument('--mode', type=str, default='normal')  # normal for standard setting, delayed for sparse
-    parser.add_argument('--K', type=int, default=20)
+    parser.add_argument('--K', type=int, default=40)
     parser.add_argument('--pct_traj', type=float, default=1.)
     parser.add_argument('--batch_size', type=int, default=64)
     parser.add_argument('--model_type', type=str, default='dt')  # dt for decision transformer, bc for behavior cloning
