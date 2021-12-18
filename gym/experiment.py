@@ -64,7 +64,7 @@ def experiment(
     elif env_name == 'fetch':
         from multiworld.core.flat_goal_env import FlatGoalEnv
         base_env = gym.make('gym_traj:FetchTrajReachDense-v2')
-        env = FlatGoalEnv(base_env, obs_key='observation') # append_goal_to_obs = True
+        env = FlatGoalEnv(base_env, obs_keys=['observation']) # append_goal_to_obs = True
         max_ep_len = 1000
         env_targets = [-50000] # -50
         scale = 1000.
