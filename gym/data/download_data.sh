@@ -1,0 +1,1 @@
+wget --no-check-certificate https://drive.google.com/file/d/12lHMFGlCEkSAn5zFm4oT17_-Ibs1GKbE -O fetch-expert-v2.pkl
