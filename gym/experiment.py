@@ -64,7 +64,7 @@ def experiment(
     elif env_name == 'fetch':
         from multiworld.core.flat_goal_env import FlatGoalEnv
         base_env = gym.make('gym_traj:FetchTrajReachDense-v2')
-        env = FlatGoalEnv(base_env, append_goal_to_obs = True)
+        env = FlatGoalEnv(base_env, obs_key='observation') # append_goal_to_obs = True
         max_ep_len = 1000
         env_targets = [-50000] # -50
         scale = 1000.
@@ -303,7 +303,7 @@ if __name__ == '__main__':
     parser.add_argument('--env', type=str, default='fetch')
     parser.add_argument('--dataset', type=str, default='expert')  # medium, medium-replay, medium-expert, expert
     parser.add_argument('--mode', type=str, default='normal')  # normal for standard setting, delayed for sparse
-    parser.add_argument('--K', type=int, default=60)
+    parser.add_argument('--K', type=int, default=20)
     parser.add_argument('--pct_traj', type=float, default=1.)
     parser.add_argument('--batch_size', type=int, default=64)
     parser.add_argument('--model_type', type=str, default='dt')  # dt for decision transformer, bc for behavior cloning
