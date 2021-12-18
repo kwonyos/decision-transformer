@@ -319,7 +319,7 @@ if __name__ == '__main__':
     parser.add_argument('--max_iters', type=int, default=35) ## more than 10?
     parser.add_argument('--num_steps_per_iter', type=int, default=10000)
     parser.add_argument('--device', type=str, default='cuda')
-    parser.add_argument('--log_to_wandb', '-w', type=bool, default=False)
+    parser.add_argument('--log_to_wandb', '-w', type=bool, default=True)
     
     args = parser.parse_args()
 
