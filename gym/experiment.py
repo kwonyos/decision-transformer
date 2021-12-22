@@ -65,6 +65,9 @@ def experiment(
         from multiworld.core.flat_goal_env import FlatGoalEnv
         base_env = gym.make('gym_traj:FetchTrajReachDense-v2')
         env = FlatGoalEnv(base_env, obs_keys=['observation']) # append_goal_to_obs = True
+        action_bouond = 0.2
+        env.action_space.high = action_bouond*env.action_space.high
+        env.action_space.low = action_bouond*env.action_space.high
         max_ep_len = 1000
         env_targets = [-50000] # -50
         scale = 1000.
@@ -316,7 +319,7 @@ if __name__ == '__main__':
     parser.add_argument('--weight_decay', '-wd', type=float, default=1e-4)
     parser.add_argument('--warmup_steps', type=int, default=10000)
     parser.add_argument('--num_eval_episodes', type=int, default=100)
-    parser.add_argument('--max_iters', type=int, default=35) ## more than 10?
+    parser.add_argument('--max_iters', type=int, default=15) ## more than 10?
     parser.add_argument('--num_steps_per_iter', type=int, default=10000)
     parser.add_argument('--device', type=str, default='cuda')
     parser.add_argument('--log_to_wandb', '-w', type=bool, default=True)
