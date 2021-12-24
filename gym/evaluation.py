@@ -60,7 +60,7 @@ def evaluate_episode_rtg_render(
 
         # CHANGE
         state, reward, done, _ = env.step(action)
-        # env.render()
+        env.render()
 
         cur_state = torch.from_numpy(state).to(device=device).reshape(1, state_dim)
         states = torch.cat([states, cur_state], dim=0)
