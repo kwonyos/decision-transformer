@@ -94,7 +94,7 @@ if __name__ == '__main__':
     env = FlatGoalEnv(base_env, obs_keys=['observation']) 
     max_ep_len = 1000
     
-    scale = 10000
+    scale = 1000
 
     state_dim = env.observation_space.shape[0]
     act_dim = env.action_space.shape[0]
