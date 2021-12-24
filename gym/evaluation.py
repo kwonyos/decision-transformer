@@ -93,7 +93,7 @@ if __name__ == '__main__':
     env = gym.make('gym_mujoco:ReacherTraj-v2')
     max_ep_len = 150
     
-    scale = 10
+    scale = 10000
 
     state_dim = env.observation_space.shape[0]
     act_dim = env.action_space.shape[0]
@@ -132,8 +132,7 @@ if __name__ == '__main__':
 
     #evaluate_episode_rtg_render
     return_history, length_history = [], [] 
-
-    env_targets = [-15 ,-20, -25, -30, -35, -40, -45]
+    env_targets = [-40000, -50000, -60000]
     for target_rew in env_targets:
         for _ in range(num_eval_episodes):
             with torch.no_grad():
