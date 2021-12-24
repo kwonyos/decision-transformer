@@ -88,17 +88,18 @@ if __name__ == '__main__':
     mode = 'normal'
     num_eval_episodes = 2000
     device = 'cuda'
-
-
-    env = gym.make('gym_mujoco:ReacherTraj-v2')
-    max_ep_len = 150
+    
+    from multiworld.core.flat_goal_env import FlatGoalEnv
+    base_env = gym.make('gym_traj:FetchTrajReachDense-v2')
+    env = FlatGoalEnv(base_env, obs_keys=['observation']) 
+    max_ep_len = 1000
     
     scale = 10000
 
     state_dim = env.observation_space.shape[0]
     act_dim = env.action_space.shape[0]
 
-    dataset_path = f'data/trajreacher2d-expert-v2.pkl'
+    dataset_path = f'data/fetch-expert-v2.pkl'
 
     with open(dataset_path, 'rb') as f:
         trajectories = pickle.load(f)
