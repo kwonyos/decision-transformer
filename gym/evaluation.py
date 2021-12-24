@@ -92,6 +92,7 @@ if __name__ == '__main__':
     from multiworld.core.flat_goal_env import FlatGoalEnv
     base_env = gym.make('gym_traj:FetchTrajReachDense-v2')
     env = FlatGoalEnv(base_env, obs_keys=['observation']) 
+    env.is_debug = True
     max_ep_len = 1000
     
     scale = 1000
